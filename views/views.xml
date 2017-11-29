@@ -1,0 +1,59 @@
+<openerp>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="pitman_calendar.list">
+      <field name="name">pitman_calendar list</field>
+      <field name="model">pitman_calendar.pitman_calendar</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="pitman_calendar.action_window">
+      <field name="name">pitman_calendar window</field>
+      <field name="res_model">pitman_calendar.pitman_calendar</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="pitman_calendar.action_server">
+      <field name="name">pitman_calendar server</field>
+      <field name="model_id" ref="model_pitman_calendar_pitman_calendar"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="pitman_calendar" id="pitman_calendar.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="pitman_calendar.menu_1" parent="pitman_calendar.menu_root"/>
+    <menuitem name="Menu 2" id="pitman_calendar.menu_2" parent="pitman_calendar.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="pitman_calendar.menu_1_list" parent="pitman_calendar.menu_1"
+              action="pitman_calendar.action_window"/>
+    <menuitem name="Server to list" id="pitman_calendar" parent="pitman_calendar.menu_2"
+              action="pitman_calendar.action_server"/>
+    -->
+  </data>
+</openerp>
