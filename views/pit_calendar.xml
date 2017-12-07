@@ -1,6 +1,8 @@
 <openerp>
   <data>
-        <record model="ir.ui.view" id="calendar_view">
+  
+
+        <record model="ir.ui.view" id="pit_calendar_view_calendar">
             <field name="name">Calendar</field>
             <field name="model">pit.calendar</field>
             <field name="priority" eval="8" />
@@ -8,6 +10,41 @@
                 <calendar string="Calendar" date_start="start_date"
                           date_stop="end_date"
                           color="teacher_id">
+                   <field name="group_id"/>
+                   <field name="teacher_id"/>
+                   <field name="classroom_id"/>
+                </calendar>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="pit_calendar_view_tree">
+            <field name="name">Calendar</field>
+            <field name="model">pit.calendar</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+               <tree string="Calendar">
+                 <field name="start_date"/>
+                 <field name="group_id"/>
+              </tree>
+
+            </field>
+        </record>
+        <record model="ir.ui.view" id="pit_calendar_view_form">
+            <field name="name">Calendar</field>
+            <field name="model">pit.calendar</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+
+                <form string="Calendar" >
+
+                 <group col="4">
+                    <field name="group_id"/>
+                    <field name="teacher_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                 </group>
+
                <group col="2">
                 <field name="calendar_items_ids" >
                        <tree editable="bottom" >
@@ -16,12 +53,8 @@
                             </tree>
                 </field>
                </group>
-               <group col="2">
-                   <field name="group_id"/>
-                   <field name="teacher_id"/>
-               </group>
 
-                </calendar>
+                </form>
 
             </field>
         </record>
@@ -30,13 +63,11 @@
             <field name="name">pit.calendar</field>
             <field name="res_model">pit.calendar</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form,calendar</field>
+            <field name="view_mode">calendar,tree,form</field>
         </record>
-        #Main
        <menuitem id="main_calendar_menu" name="Calendar"  icon="fa-user"
             web_icon="pitman_calendar,static/description/icon.png"
             sequence="75"/>
-        #sub
        <menuitem id="sub_calendar_menu" name="Calendar" parent="main_calendar_menu"
                   action="calendar_list_action"/>
   </data>
