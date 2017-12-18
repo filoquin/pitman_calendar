@@ -9,7 +9,8 @@
             <field name="arch" type="xml">
                 <calendar string="Calendar" date_start="start_date"
                           date_stop="end_date"
-                          color="teacher_id">
+                          color="teacher_id"
+                          quick_add="false">
                    <field name="group_id"/>
                    <field name="teacher_id"/>
                    <field name="classroom_id"/>
@@ -60,7 +61,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="calendar_list_action">
-            <field name="name">pit.calendar</field>
+            <field name="name">Calendar</field>
             <field name="res_model">pit.calendar</field>
             <field name="view_type">form</field>
             <field name="view_mode">calendar,tree,form</field>
