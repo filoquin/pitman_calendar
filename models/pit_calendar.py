@@ -13,6 +13,7 @@ class pit_calendar(models.Model):
     group_id = fields.Many2one('pit.school.course.group', 'Group')
     calendar_items_ids = fields.One2many('pit.calendar.item', 'calendar_id', string='Items')
     group_calendar_id = fields.Many2one('pit.school.course.calendar',string='Group Calendar')
+    class_number = fields.Integer(string='Class number')
     classroom_id = fields.Many2one('pit.location.classroom','Classroom',related="group_calendar_id.classroom_id",store=True)
 
 
