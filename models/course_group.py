@@ -37,6 +37,18 @@ class pit_school_course_group(models.Model):
 
     _inherit = "pit.school.course.group"
 
+    @api.model
+    def create (self,values):
+        res = super(pit_school_course_group,self).create(values)
+        res.create_calendar()
+        return res
+
+    @api.one
+    def write (self,values):
+        res = super(pit_school_course_group,self).write(values)
+        res.create_calendar()
+        return res
+
     @api.one
     def create_calendar(self):
 
