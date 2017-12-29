@@ -46,7 +46,7 @@ class pit_school_course_group(models.Model):
     @api.one
     def write (self,values):
         res = super(pit_school_course_group,self).write(values)
-        res.create_calendar()
+        self.create_calendar()
         return res
 
     @api.one
