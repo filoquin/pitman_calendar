@@ -1,0 +1,286 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* pitman_calendar
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c-20180206\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-09 16:43+0000\n"
+"PO-Revision-Date: 2018-02-09 16:43+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_active
+msgid "Active"
+msgstr "Activo"
+
+#. module: pitman_calendar
+#: model:ir.model,name:pitman_calendar.model_pit_attendance
+#: model:ir.model,name:pitman_calendar.model_pit_attendance_line
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_line_attendance_id
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_line_attendance_value
+#: model:ir.ui.view,arch_db:pitman_calendar.pit_calendar_view_form
+msgid "Attendance"
+msgstr "Asistencia"
+
+#. module: pitman_calendar
+#: code:addons/pitman_calendar/models/pit_calendar.py:44
+#, python-format
+msgid "Attendance register"
+msgstr "Registro de asistencia"
+
+#. module: pitman_calendar
+#: model:ir.ui.menu,name:pitman_calendar.menu_pit_attendance
+msgid "Attendances"
+msgstr "Asistencias"
+
+#. module: pitman_calendar
+#: selection:pit.attendance.line,attendance_state:0
+msgid "Ausente"
+msgstr "Ausente"
+
+#. module: pitman_calendar
+#: model:ir.actions.act_window,name:pitman_calendar.calendar_list_action
+#: model:ir.model,name:pitman_calendar.model_pit_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_name
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_item_calendar_id
+#: model:ir.ui.menu,name:pitman_calendar.sub_menu_calendar
+#: model:ir.ui.view,arch_db:pitman_calendar.pit_calendar_view_calendar
+#: model:ir.ui.view,arch_db:pitman_calendar.pit_calendar_view_form
+#: model:ir.ui.view,arch_db:pitman_calendar.pit_calendar_view_tree
+msgid "Calendar"
+msgstr "Calendario"
+
+#. module: pitman_calendar
+#: model:ir.model,name:pitman_calendar.model_pit_calendar_item
+msgid "Calendar Item"
+msgstr "Item"
+
+#. module: pitman_calendar
+#: sql_constraint:pit.attendance:0
+#: sql_constraint:pit.attendance.line:0
+msgid "Choose another value - it has to be unique!"
+msgstr "El valor es unico"
+
+#. module: pitman_calendar
+#: model:ir.ui.menu,name:pitman_calendar.main_calendar_menu
+msgid "Class"
+msgstr "Clases"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_class_number
+msgid "Class number"
+msgstr "Numero de clase"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_classroom_id
+msgid "Classroom"
+msgstr "Aula"
+
+#. module: pitman_calendar
+#: model:ir.model,name:pitman_calendar.model_pit_school_course_group
+msgid "Course group"
+msgstr "Cursada"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_create_uid
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_line_create_uid
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_create_uid
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_item_create_uid
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_material_create_uid
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_school_course_topic_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_create_date
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_line_create_date
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_create_date
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_item_create_date
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_material_create_date
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_school_course_topic_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_display_name
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_line_display_name
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_display_name
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_item_display_name
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_material_display_name
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_school_course_topic_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_end_date
+msgid "End date"
+msgstr "End date"
+
+#. module: pitman_calendar
+#: model:ir.actions.act_window,name:pitman_calendar.pit_attendance_action
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_group_id
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_group_id
+#: model:ir.ui.view,arch_db:pitman_calendar.pit_attendance_view_search
+msgid "Group"
+msgstr "Cursada"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_group_calendar_id
+msgid "Group Calendar"
+msgstr "Calendario Cursada"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_id
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_line_id
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_id
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_item_id
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_material_id
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_school_course_topic_id
+msgid "ID"
+msgstr "ID"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_calendar_items_ids
+msgid "Items"
+msgstr "Items"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance___last_update
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_line___last_update
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar___last_update
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_item___last_update
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_material___last_update
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_school_course_topic___last_update
+msgid "Last Modified on"
+msgstr "Última Modifiación en"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_line_write_uid
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_write_uid
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_item_write_uid
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_material_write_uid
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_write_uid
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_school_course_topic_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_line_write_date
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_write_date
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_item_write_date
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_material_write_date
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_write_date
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_school_course_topic_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_attendance_line_ids
+msgid "Lines"
+msgstr "Líneas"
+
+#. module: pitman_calendar
+#: model:ir.model,name:pitman_calendar.model_pit_calendar_material
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_item_material_id
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_material_name
+msgid "Material"
+msgstr "Material"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: pitman_calendar
+#: selection:pit.attendance.line,attendance_state:0
+msgid "Presente"
+msgstr "Presente"
+
+#. module: pitman_calendar
+#: model:ir.ui.view,arch_db:pitman_calendar.view_pit_attendance_form
+msgid "Register"
+msgstr "Registro"
+
+#. module: pitman_calendar
+#: model:ir.ui.view,arch_db:pitman_calendar.view_pit_attendance_form
+msgid "Start"
+msgstr "Inicio"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_start_date
+msgid "Start date"
+msgstr "Fecha de inicio"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_line_attendance_state
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_state
+msgid "State"
+msgstr "Estado"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_line_student_id
+msgid "Student"
+msgstr "Alumno"
+
+#. module: pitman_calendar
+#: selection:pit.attendance.line,attendance_state:0
+msgid "Tarde"
+msgstr "Tarde"
+
+#. module: pitman_calendar
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_attendance_teacher_id
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_teacher_id
+msgid "Teacher"
+msgstr "Profesor"
+
+#. module: pitman_calendar
+#: model:ir.model,name:pitman_calendar.model_pit_school_course_topic
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_calendar_item_topic_id
+#: model:ir.model.fields,field_description:pitman_calendar.field_pit_school_course_topic_name
+msgid "Topic"
+msgstr "Topico"
+
+#. module: pitman_calendar
+#: model:ir.ui.view,arch_db:pitman_calendar.view_pit_attendance_form
+msgid "attendance"
+msgstr "Asistencia"
+
+#. module: pitman_calendar
+#: model:ir.ui.view,arch_db:pitman_calendar.view_pit_attendance_tree
+msgid "attendance register"
+msgstr "Registro de asistencia"
+
+#. module: pitman_calendar
+#: model:ir.ui.view,arch_db:pitman_calendar.view_pit_attendance_form
+#: selection:pit.attendance,state:0
+msgid "cancel"
+msgstr "cancela"
+
+#. module: pitman_calendar
+#: model:ir.ui.view,arch_db:pitman_calendar.view_pit_attendance_form
+#: selection:pit.attendance,state:0
+msgid "done"
+msgstr "Finalizar"
+
+#. module: pitman_calendar
+#: selection:pit.attendance,state:0
+msgid "draft"
+msgstr "borrador"
+
+#. module: pitman_calendar
+#: selection:pit.attendance,state:0
+msgid "start"
+msgstr "inicio"
+
+#. module: pitman_calendar
+#: model:ir.ui.view,arch_db:pitman_calendar.pit_attendance_view_search
+msgid "today"
+msgstr "hoy"
+

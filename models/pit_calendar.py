@@ -1,4 +1,5 @@
 from openerp import models, fields, api
+from openerp.tools.translate import _
 
 
 class pit_calendar(models.Model):
@@ -15,7 +16,7 @@ class pit_calendar(models.Model):
         else:
             return False
 
-    name = fields.Char('Name',compute='compute_name',store=True)
+    name = fields.Char('Name',compute='_compute_name',store=True)
     start_date = fields.Datetime(required=True)
     end_date = fields.Datetime()
     teacher_id = fields.Many2one('pit.teacher', 'Teacher', required=True , default=_my_teacher)
@@ -30,3 +31,26 @@ class pit_calendar(models.Model):
     @api.one
     def _compute_name(self):
         self.name = "%s %s %s" % (self.start_date ,self.teacher_id.name, self.group_id.name)
+
+
+    @api.multi
+    def open_atte_register(self):
+        atte = self.env['pit.attendance'].search([('name','=',self.id)])
+        if len(atte) == 0:
+            atte = self.env['pit.attendance'].create({'name':self.id,'state':'draft'})
+            atte.do_start()
+
+        view = { 
+            'name': _('Attendance register'),
+            'view_mode': 'form',
+            'view_id': False,
+            'view_type': 'tree',
+            'res_model': 'pit.attendance',
+            'res_id': atte.id,
+            'type': 'ir.actions.act_window',
+            'nodestroy': True,
+            'target': 'new',
+            'flags': {'action_buttons': True},
+
+        }
+        return view

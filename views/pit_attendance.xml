@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_pit_attendance_tree" model="ir.ui.view">
+            <field name="name">pit.attendance.tree</field>
+            <field name="model">pit.attendance</field>
+            <field name="arch" type="xml">
+                <tree string="attendance register">
+                        <field name="name"/>
+                        <field name="teacher_id"/>
+                        <field name="group_id"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_pit_attendance_form" model="ir.ui.view">
+            <field name="name">Register</field>
+            <field name="model">pit.attendance</field>
+            <field name="arch" type="xml">
+                <form string="attendance">
+                    <header>
+
+
+                        <button  class="btn"  type="object" string="Start"
+                            name="do_start" states="draft"></button>
+                        <button  class="btn"  type="object" string="cancel"
+                            name="do_cancel" states="active"></button>
+                        <button  class="btn"  type="object" string="done"
+                            name="do_done" states="active"></button>
+                        <field name="state" widget="statusbar"/>
+
+                    </header>
+                    <sheet>
+                    <group col="4">
+     
+
+                        <field name="name"/>
+                        <field name="teacher_id"/>
+                        <field name="group_id"/>
+                        <field name="active"/>
+
+
+                    </group>
+                    <notebook colspan="4">
+
+                    <page string="Register">
+
+
+                        <span>
+                            <field name="attendance_line_ids">
+                                <tree editable="bottom">
+                                        <field name="student_id" readonly="True"/>
+                                        <field name="attendance_state" widget="radio" options='{"horizontal": 1}' />
+                                </tree>
+                            </field>
+                        </span>
+
+                    </page>
+
+
+                    </notebook>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="pit_attendance_view_search" model="ir.ui.view">
+            <field name="name">pit.attendance.search</field>
+            <field name="model">pit.attendance</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Group">
+                    <field name="name"/>
+                    <filter string="today" name="today" domain="[('name.start_date','&lt;=',time.strftime('%%Y-%%m-%%d')),('name.end_date','&gt;=',time.strftime('%%Y-%%m-%%d'))]" context="{}" />
+
+
+                </search>
+            </field>
+        </record>
+
+        <record id="pit_attendance_action" model="ir.actions.act_window">
+            <field name="name">Group</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pit.attendance</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_pit_attendance_tree" />
+            <field name="context">{'search_default_today':1}</field>
+        </record>
+
+        <menuitem id="menu_pit_attendance" action="pit_attendance_action" name="Attendances" parent="main_calendar_menu" sequence="30"/>
+
+
+
+</data>
+</openerp>

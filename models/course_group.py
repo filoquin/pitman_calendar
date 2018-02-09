@@ -37,17 +37,27 @@ class pit_school_course_group(models.Model):
 
     _inherit = "pit.school.course.group"
 
+    #expected_attendance = fields.Integer('expected attendance',store = True , compute='compute_expected_attendance')
+
+
     @api.model
     def create (self,values):
         res = super(pit_school_course_group,self).create(values)
         res.create_calendar()
+        res.compute_expected_attendance()
         return res
 
     @api.one
     def write (self,values):
         res = super(pit_school_course_group,self).write(values)
-        res.create_calendar()
+        self.create_calendar()
+        self.compute_expected_attendance()
         return res
+
+    @api.one
+
+    def compute_expected_attendance (self):
+        self.expected_attendance = self.env['pit.calendar'].search_count([('group_id','=',self.id)])
 
     @api.one
     def create_calendar(self):
@@ -81,7 +91,6 @@ class pit_school_course_group(models.Model):
         i= 0
         for calendar in pit_calendar_items_sorted :
             i += 1
-
             calendar['class_number'] = i                
             exist = self.env['pit.calendar'].search([('group_id','=',self.id), ('class_number','=',i)], limit=1)
             if len(exist):

@@ -38,6 +38,9 @@
             <field name="arch" type="xml">
 
                 <form string="Calendar" >
+                  <header>
+                         <button  class="oe_inline oe_stat_button"  type="object" string="Attendance" name="open_atte_register" icon="fa-table"><div>Attendance</div></button>
+                  </header>
 
                  <group col="4">
                     <field name="group_id"/>
@@ -65,11 +68,14 @@
             <field name="res_model">pit.calendar</field>
             <field name="view_type">form</field>
             <field name="view_mode">calendar,tree,form</field>
+            <field name="view_id" ref="pit_calendar_view_calendar" />
         </record>
-       <menuitem id="main_calendar_menu" name="Calendar"  icon="fa-user"
-            web_icon="pitman_calendar,static/description/icon.png"
-            sequence="75"/>
-       <menuitem id="sub_calendar_menu" name="Calendar" parent="main_calendar_menu"
-                  action="calendar_list_action"/>
+       <menuitem id="main_calendar_menu" name="Class"  
+            sequence="75" parent="pitman_base.menu_pit_coursemenu_root"/>
+
+       <menuitem id="sub_menu_calendar" name="Calendar" parent="main_calendar_menu"
+                  action="calendar_list_action"  sequence="10"/>
+
+
   </data>
 </openerp>
