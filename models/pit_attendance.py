@@ -28,57 +28,38 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class pit_attendance(models.Model):
-
-    _name = "pit.attendance"
-    _description = "Attendance"
-
-    _sql_constraints = [
-                         ('unique_calendar', 
-                          'unique(name)',
-                          'Choose another value - it has to be unique!')
-    ]
 
 
+class pit_calendar_attendance(models.Model):
 
-    name = fields.Many2one('pit.calendar', string='Calendar', required=True )
-    state = fields.Selection([('draft','draft'),('start','start'),('done','done'),('cancel','cancel')], 'State' )
-    teacher_id = fields.Many2one('pit.teacher', string='Teacher',related="name.teacher_id",store=True)
-    group_id = fields.Many2one('pit.school.course.group', string='Group',related="name.group_id",store=True)
-    attendance_line_ids = fields.One2many('pit.attendance.line', 'attendance_id',string='Lines')
-
-    active = fields.Boolean('Active', default=True)
-
-    @api.one
-    def do_start(self):
-        lines =[]
-        for enroll in self.group_id.enrollment_ids :
-            if enroll.state == 'active':
-                self.env['pit.attendance.line'].create({'attendance_id':self.id,'student_id':enroll.student_id.id,'attendance_state':'0'})
-        self.state = 'start'
-
-
-class pit_attendance_line(models.Model):
-
-    _name = "pit.attendance.line"
+    _name = "pit.calendar.attendance"
     _description = "Attendance"
     _order = "student_id"
     _sql_constraints = [
                          ('unique', 
-                          'unique(student_id,attendance_id)',
+                          'unique(student_id,calendar_id)',
                           'Choose another value - it has to be unique!')
     ]
 
 
-    attendance_id = fields.Many2one('pit.attendance', 'Attendance', required=True )
+    calendar_id = fields.Many2one('pit.calendar', 'Calendar', required=True )
     student_id = fields.Many2one('pit.student', 'Student', required=True )
-    attendance_state = fields.Selection([('1','Presente'),('0.5','Tarde'),('0','Ausente')], string='State',default='0', required=True )
+
+    attendance_present = fields.Boolean('P')
+    attendance_late = fields.Boolean('T')
+    
+    #attendance_state = fields.Selection([('1','Presente'),('0.5','Tarde'),('0','Ausente')], string='State',default='0', required=True )
     attendance_value = fields.Float( 'Attendance', store=True,compute='_compute_attendande_value')
     
     @api.multi
-    @api.depends('attendance_state')
-    @api.onchange('attendance_state')
+    @api.depends('attendance_present','attendance_late')
+    @api.onchange('attendance_present','attendance_late')
     def _compute_attendande_value(self):
         for line in self:
-            if line.attendance_state :
-                line.attendance_value = float(line.attendance_state)
+            if line.attendance_present :
+                line.attendance_value = 1.0
+            elif line.attendance_late :
+                line.attendance_value = 0.5
+            else:
+                line.attendance_value = 0
+

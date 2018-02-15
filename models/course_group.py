@@ -44,18 +44,17 @@ class pit_school_course_group(models.Model):
     def create (self,values):
         res = super(pit_school_course_group,self).create(values)
         res.create_calendar()
-        res.compute_expected_attendance()
+        #res.compute_expected_attendance()
         return res
 
     @api.one
     def write (self,values):
         res = super(pit_school_course_group,self).write(values)
         self.create_calendar()
-        self.compute_expected_attendance()
+        #self.compute_expected_attendance()
         return res
 
     @api.one
-
     def compute_expected_attendance (self):
         self.expected_attendance = self.env['pit.calendar'].search_count([('group_id','=',self.id)])
 
@@ -82,6 +81,10 @@ class pit_school_course_group(models.Model):
                 calendar['start_date']=dt + timedelta(hours =calendar_line.hour_from ) + timedelta(hours =3 )
                 calendar['end_date']=dt + timedelta(hours=calendar_line.hour_to )+ timedelta(hours =3 )
                 calendar['teacher_id']=calendar_line.teacher_id.id
+                
+                asistant_ids = [(4,x.id)  for x in calendar_line.asistant_ids]
+                calendar['asistant_ids']=asistant_ids
+
                 calendar['group_id']=self.id
                 calendar['group_calendar_id']=calendar_line.id
                 
