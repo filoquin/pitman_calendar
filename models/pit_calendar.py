@@ -39,7 +39,7 @@ class pit_calendar(models.Model):
         lines =[]
         for enroll in self.group_id.enrollment_ids :
             if enroll.state == 'active':
-                self.env['pit.calendar.attendance'].create({'calendar_id':self.id,'student_id':enroll.student_id.id})
+                self.env['pit.calendar.attendance'].create({'calendar_id':self.id,'enrollment_id':enroll.id,'student_id':enroll.student_id.id})
         self.atte_state = 'start'
 
 

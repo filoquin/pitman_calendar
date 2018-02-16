@@ -75,7 +75,25 @@
             <field name="model">pit.calendar</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
+
                 <search string="Group">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="teacher_id"/>
+                    <field name="asistant_ids"/>
+                    <field name="group_id"/>
+                    <field name="calendar_items_ids"/>
+                    <field name="group_calendar_id"/>
+                    <field name="class_number"/>
+                    <field name="classroom_id"/>
+
+                    <filter string="group by group" domain="[]" context="{'group_by':'group_id'}" />
+                    <filter string="group by teacher" domain="[]" context="{'group_by':'teacher_id'}" />
+                    <filter string="group by classroom" domain="[]" context="{'group_by':'classroom_id'}" />
+
+
+
                     <filter string="today" name="today" domain="[('start_date','&lt;=',time.strftime('%%Y-%%m-%%d')),('end_date','&gt;=',time.strftime('%%Y-%%m-%%d'))]" context="{}" />
 
 
@@ -95,6 +113,53 @@
         </record>
 
         <menuitem id="menu_pit_attendance" action="pit_attendance_action" name="Attendances" parent="main_calendar_menu" sequence="30"/>
+
+
+
+        <record id="view_pit_calendar_attendance_tree" model="ir.ui.view">
+            <field name="name">pit.calendar.attendance.tree</field>
+            <field name="model">pit.calendar.attendance</field>
+            <field name="arch" type="xml">
+                <tree string="attendance register" editable="top">
+                                <field name="calendar_id" readonly="True"/>
+                                <field name="student_id" readonly="True"/>
+                                <field name="attendance_present" readonly="True"/>
+                                <field name="attendance_late" readonly="True"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+
+
+        <record id="pit_calendar_attendance_view_search" model="ir.ui.view">
+            <field name="name">pit.calendar.attendance.search</field>
+            <field name="model">pit.calendar.attendance</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+
+                <search string="attendance">
+                    <field name="student_id" />
+                    <field name="enrollment_id" />
+                    <filter string="today" name="today" domain="[('calendar_id.start_date','&lt;=',time.strftime('%%Y-%%m-%%d')),('calendar_id.end_date','&gt;=',time.strftime('%%Y-%%m-%%d'))]" context="{}" />
+
+
+                </search>
+            </field>
+        </record>
+
+        <record id="pit_calendar_attendance_action" model="ir.actions.act_window">
+            <field name="name">Attendace register</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pit.calendar.attendance</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_pit_calendar_attendance_tree" />
+            <field name="context">{}</field>
+        </record>
+
+
+
 
 
 

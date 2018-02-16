@@ -26,6 +26,7 @@
         # 'security/ir.model.access.csv',
         'views/pit_calendar.xml',
         'views/pit_attendance.xml',
+        'views/pit_enrollment.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

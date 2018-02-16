@@ -10,7 +10,7 @@
                 <calendar string="Calendar" date_start="start_date"
                           date_stop="end_date"
                           color="teacher_id"
-                          quick_add="false">
+                          quick_add="false" display="-[group_id]\n -[teacher_id] - [classroom_id]">
                    <field name="group_id"/>
                    <field name="teacher_id"/>
                    <field name="classroom_id"/>
@@ -19,6 +19,22 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="pit_class_calendar_view_calendar">
+            <field name="name">Calendar</field>
+            <field name="model">pit.calendar</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <calendar string="Calendar" date_start="start_date"
+                          date_stop="end_date"
+                          color="classroom_id"
+                          quick_add="false" display="-[group_id]\n -[teacher_id] - [classroom_id]">
+                   <field name="group_id"/>
+                   <field name="teacher_id"/>
+                   <field name="classroom_id"/>
+                </calendar>
+
+            </field>
+        </record>
         <record model="ir.ui.view" id="pit_calendar_view_tree">
             <field name="name">Calendar</field>
             <field name="model">pit.calendar</field>
@@ -78,6 +94,16 @@
        <menuitem id="sub_menu_calendar" name="Calendar" parent="main_calendar_menu"
                   action="calendar_list_action"  sequence="10"/>
 
+        <record model="ir.actions.act_window" id="calendar_class_list_action">
+            <field name="name">Calendar classroom</field>
+            <field name="res_model">pit.calendar</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">calendar,tree,form</field>
+            <field name="view_id" ref="pit_class_calendar_view_calendar" />
+        </record>
+
+       <menuitem id="sub_menu_calendar_class" name="Classroom Calendar" parent="main_calendar_menu"
+                  action="calendar_class_list_action"  sequence="15"/>
 
   </data>
 </openerp>

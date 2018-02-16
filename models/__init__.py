@@ -6,3 +6,4 @@ import pit_calendar_material
 import pit_course_topic
 import course_group
 import pit_attendance
+import pit_enrollment

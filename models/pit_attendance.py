@@ -43,6 +43,8 @@ class pit_calendar_attendance(models.Model):
 
 
     calendar_id = fields.Many2one('pit.calendar', 'Calendar', required=True )
+    enrollment_id = fields.Many2one('pit.enrollment', 'Enrollment', required=True )
+
     student_id = fields.Many2one('pit.student', 'Student', required=True )
 
     attendance_present = fields.Boolean('P')

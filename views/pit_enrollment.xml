@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="pit_enroll_student_form_view" model="ir.ui.view">
+            <field name="name">pit.student.enroll.form</field>
+            <field name="model">pit.student</field>
+            <field name="inherit_id" ref="pitman_base.pit_student_form_view"/>
+            <field name="arch" type="xml">
+				<field name="date_to" position="after">
+				   <field name="attendance_rate"/>	
+
+                   <button   class="oe_inline oe_stat_button"  type="action" string="attendances"
+                                                name="%(pit_calendar_attendance_action)d" 
+                                                context="{'search_default_enrollment_id': active_id}">attendances</button>
+
+				</field>            	
+            </field>
+        </record>
+
+        <record id="pit_enroll_student_form_view" model="ir.ui.view">
+            <field name="name">pit.course.enroll.form</field>
+            <field name="model">pit.school.course.group</field>
+            <field name="inherit_id" ref="pitman_base.view_pit_school_course_group"/>
+            <field name="arch" type="xml">
+                <field name="current_debt" position="after">
+                   <field name="attendance_rate"/>  
+
+                   <button   class="oe_inline oe_stat_button"  type="action" string="att"
+                                                name="%(pit_calendar_attendance_action)d" 
+                                                context="{'search_default_enrollment_id': active_id}">att</button>
+
+                </field>                
+            </field>
+        </record>
+
+
+
+    </data>
+</openerp>
