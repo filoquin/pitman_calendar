@@ -34,6 +34,15 @@ class pit_calendar(models.Model):
 
     active = fields.Boolean('Active', default=True)
 
+
+    @api.one
+    def write(self,vals):
+        res = super(pit_calendar,self).write(vals)
+        self.attendance_line_ids._compute_attendande_value()
+        return res
+
+
+
     @api.one
     def do_start_attendance(self):
         lines =[]

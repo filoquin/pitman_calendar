@@ -45,13 +45,13 @@ class pit_enrollment(models.Model):
         att = self._cr.execute("""select att.enrollment_id, count(attendance_value) as atte_count , sum(attendance_value) as atte_sum  
                                     from pit_calendar_attendance att
                                     join pit_calendar cal on cal.id = att.calendar_id
-                                    where att.enrollment_id in (%s)
+                                    where att.enrollment_id in (%s) and cal.atte_state in ('done','start')
                                     group by att.enrollment_id"""% ids)
         atts = self._cr.dictfetchall()
         rows={}
         for row in atts:
             rows[str(row['enrollment_id'])]=[row['atte_count'] or 0.0,row['atte_sum'] or 0.0]
-
+        _logger.info(rows)
         for enroll in self:
-        	if str(enroll.id) in rows:
-	            enroll.attendance_rate =(row['atte_sum']*100.00)/rows[str(enroll.id)][0]
+        	if str(enroll.id) in rows and rows[str(enroll.id)][0] > 0:
+	            enroll.attendance_rate =(rows[str(enroll.id)][1]*100.00)/rows[str(enroll.id)][0]

@@ -58,10 +58,44 @@ class pit_calendar_attendance(models.Model):
     @api.onchange('attendance_present','attendance_late')
     def _compute_attendande_value(self):
         for line in self:
-            if line.attendance_present :
+            if line.attendance_present == True :
                 line.attendance_value = 1.0
-            elif line.attendance_late :
+            elif line.attendance_late == True:
                 line.attendance_value = 0.5
             else:
                 line.attendance_value = 0
+
+
+class pit_calendar_attendance_report(models.Model):
+
+    _name = "pit.calendar.attendance.report"
+    _description = "Attendance report"
+    _auto = False 
+
+    name = fields.Date( 'Month', readonly=True)
+    teacher_id = fields.Many2one('pit.teacher', 'Teacher', readonly=True)
+    group_id = fields.Many2one('pit.school.course.group', 'Group', readonly=True)
+    class_count = fields.Float('Class quant', readonly=True)
+    enroll_count = fields.Float('Enroll quant', readonly=True)
+    atte_sum = fields.Float('avg Attendances', readonly=True)
+
+    #asistant_ids = fields.Many2many('pit.teacher',string='asistant')
+
+
+    def init(self, cr):
+        tools.sql.drop_view_if_exists(cr, 'pit_calendar_attendance_report')
+
+        cr.execute("""create or replace view  pit_calendar_attendance_report as (
+                        select min(cal.id) as id , date_trunc('month', cal.start_date) as name , cal.teacher_id , cal.group_id, count(distinct cal.id) as class_count,count(distinct att.enrollment_id)  as enroll_count,sum(att.attendance_value) / count(distinct cal.id) as atte_sum
+                        from pit_calendar cal
+                        left join pit_calendar_attendance att on cal.id = att.calendar_id
+                        where cal.atte_state in ('done','start')
+                        group by date_trunc('month', cal.start_date), cal.teacher_id ,cal.group_id)""")
+
+
+
+
+
+
+
 

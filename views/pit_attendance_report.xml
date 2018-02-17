@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_pit_attendance_report_tree" model="ir.ui.view">
+            <field name="name">pit.attendance.report.tree</field>
+            <field name="model">pit.calendar.attendance.report</field>
+            <field name="arch" type="xml">
+                <tree string="attendance register">
+                        <field name="name"/>
+                        <field name="teacher_id"/>
+                        <field name="group_id"/>
+                        <field name="class_count"/>
+                        <field name="enroll_count"/>
+                        <field name="atte_sum"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="pit_attendance_view_report_search" model="ir.ui.view">
+            <field name="name">pit.attendance.report.search</field>
+            <field name="model">pit.calendar.attendance.report</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+
+                <search string="Group">
+                        <field name="name"/>
+                        <field name="teacher_id"/>
+                        <field name="group_id"/>
+
+                    <filter string="group by group" domain="[]" context="{'group_by':'name'}" />
+                    <filter string="group by teacher" domain="[]" context="{'group_by':'teacher_id'}" />
+                    <filter string="group by classroom" domain="[]" context="{'group_by':'group_id'}" />
+
+
+
+                    <filter string="this month" name="this_month" domain="[('name','=',time.strftime('%%Y-%%m-01'))]" context="{}" />
+
+
+                </search>
+            </field>
+        </record>
+
+        <record id="pit_attendance_report_action" model="ir.actions.act_window">
+            <field name="name">Attendace report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pit.calendar.attendance.report</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_pit_attendance_report_tree" />
+            <field name="view_ids"></field>
+            <field name="context">{'search_default_this_month':1}</field>
+        </record>
+
+        <menuitem id="menu_pit_attendance_report" action="pit_attendance_report_action" name="Class report" parent="main_calendar_menu" sequence="40"/>
+
+
+</data>
+</openerp>
