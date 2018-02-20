@@ -72,7 +72,7 @@ class pit_calendar_attendance_report(models.Model):
     _description = "Attendance report"
     _auto = False 
 
-    name = fields.Date( 'Month', readonly=True)
+    name = fields.Datetime( 'Month', readonly=True)
     teacher_id = fields.Many2one('pit.teacher', 'Teacher', readonly=True)
     group_id = fields.Many2one('pit.school.course.group', 'Group', readonly=True)
     class_count = fields.Float('Class quant', readonly=True)
